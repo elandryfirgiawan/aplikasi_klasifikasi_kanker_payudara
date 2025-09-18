@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Klasifikasi Kanker Payudara</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'breast_cancer_app/css/style.css' %}">
+</head>
+    <script>
+        function updateFileName() {
+            const input = document.getElementById('file-upload');
+            const fileNameDisplay = document.getElementById('file-name');
+            fileNameDisplay.textContent = input.files.length > 0 ? input.files[0].name : 'Belum ada file dipilih';
+        }
+    </script>
+
+<body>
+    <div class="agtc-background"></div>
+
+    <div class="container">
+
+        <h1>Klasifikasi File FASTA</h1>
+        <form method="post" enctype="multipart/form-data" class="upload-form">
+            {% csrf_token %}
+
+            <label for="file-upload" class="custom-upload-btn">
+                Pilih File FASTA
+                <input type="file" id="file-upload" name="fasta_file" onchange="updateFileName()" hidden>
+            </label>
+            <p id="file-name" class="file-name">Belum ada file dipilih</p>
+        
+            <button type="submit" name="fasta_submit">Klasifikasi FASTA</button>
+        </form>
+
+
+        
+
+        {% if fasta_result %}
+        <div class="classification-result success">
+            <h2>Hasil Klasifikasi:</h2>
+            <p>{{ fasta_result }}</p>
+        </div>
+{% endif %}
+
+
+        
+    </div>
+
+    <script src="{% static 'breast_cancer_app/js/background.js' %}"></script>
+</body>
+</html>
+
