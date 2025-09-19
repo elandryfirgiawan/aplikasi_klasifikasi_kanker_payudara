@@ -123,3 +123,13 @@ STATICFILES_DIRS = [BASE_DIR / "breast_cancer_app" / "static"]
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+import os
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+STATIC_URL = '/static/'
+
+# tambahkan ini
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
