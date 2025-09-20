@@ -133,3 +133,19 @@ STATIC_URL = '/static/'
 
 # tambahkan ini
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+import dj_database_url
+DATABASES = {
+    "default": dj_database_url.config(default="postgresql://localhost:5432/mylocaldb")
+}
+
+ALLOWED_HOSTS = ["*"]
+
+MIDDLEWARE = [
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    ...
+]
+
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
